@@ -1,0 +1,12 @@
+<main>
+  <table>
+    <tr  *ngFor="let p of players; let i = index" [class.odd]="i % 2 === 0">
+      <!--td>{{p.team}}</td-->
+      <td>{{i + 1}}.</td>
+      <!--td>#{{p.number}}</td-->
+      <td>{{p.firstName}} {{p.lastName}}</td>
+      <td>{{teamAbbr(p.team)}}</td>
+      <td>{{p.penalties}} min</td>
+    </tr>
+  </table>
+</main>

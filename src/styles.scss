@@ -140,3 +140,23 @@ $perhe-app-theme: mat-light-theme($perhe-app-primary, $perhe-app-accent, $perhe-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($perhe-app-theme);
+
+
+table {
+  border-collapse: collapse;
+
+  td, th {
+    padding: 0.25em 0.5em;
+
+    &.highlight {
+      background-color: #eee;
+    }
+  }
+  tr.odd td {
+    background-color: #eee;
+
+    &.highlight {
+      background-color: #ddd;
+    }
+  }
+}

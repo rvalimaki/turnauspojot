@@ -1,0 +1,20 @@
+<main>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Aika</th>
+      <th>Koti</th>
+      <th></th>
+      <th>Vieras</th>
+    </tr>
+    <tr  *ngFor="let t of games; let i = index" [class.odd]="i % 2 === 0">
+      <!--td>{{p.team}}</td-->
+      <td>{{i + 1}}.</td>
+      <td>{{t.schedule}}</td>
+      <td>{{teamAbbr(t.home)}}</td>
+      <td *ngIf="t.homeGoals == null"> - </td>
+      <td *ngIf="t.homeGoals != null">{{t.homeGoals}} - {{t.awayGoals}}</td>
+      <td>{{teamAbbr(t.away)}}</td>
+    </tr>
+  </table>
+</main>

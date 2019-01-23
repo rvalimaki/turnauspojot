@@ -15,10 +15,32 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { firebaseConfig } from './firebaseConfig';
+import { NavComponent } from './nav/nav.component';
+import { TopScorersComponent } from './top-scorers/top-scorers.component';
+import { TotalPigsComponent } from './total-pigs/total-pigs.component';
+import { StandingsComponent } from './standings/standings.component';
+import { GamesComponent } from './games/games.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
+import {
+  MatAutocompleteModule, MatDatepickerModule, MatFormFieldModule,
+  MatGridListModule, MatIconModule, MatInputModule, MatListModule,
+  MatNativeDateModule,
+  MatOptionModule, MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule, MatSortModule, MatTableModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent,
+    TopScorersComponent,
+    TotalPigsComponent,
+    StandingsComponent,
+    GamesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,13 +48,46 @@ import { firebaseConfig } from './firebaseConfig';
     BrowserAnimationsModule,
     HttpClientModule,
 
-    MatToolbarModule,
-    MatCardModule,
-    MatButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
+    LayoutModule,
+
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    MatSelectModule,
+    MatOptionModule,
+
+    MatAutocompleteModule,
+
+    MatGridListModule,
+
+
+    RouterModule.forRoot([
+      {
+        path: '', component: NavComponent, children: [
+          {path: 'pelit', component: GamesComponent},
+          {path: 'sarjataulukko', component: StandingsComponent},
+          {path: 'pistekunkut', component: TopScorersComponent},
+          {path: 'sikaosasto', component: TotalPigsComponent},
+          {path: 'dashboard', component: DashboardComponent}
+        ]
+      }])
   ],
   providers: [],
   bootstrap: [AppComponent]
