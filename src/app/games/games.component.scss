@@ -1,0 +1,13 @@
+:host {
+  table {
+    tr {
+      td {
+        // font-size: 150%;
+
+        &.date {
+          background-color: black;
+        }
+      }
+    }
+  }
+}

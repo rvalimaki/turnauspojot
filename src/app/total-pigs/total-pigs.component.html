@@ -1,12 +1,29 @@
-<main>
+<main class="taulu">
+  <div class="header" *ngIf="title == null">
+    <h2>Sikaosasto</h2>
+  </div>
   <table>
-    <tr  *ngFor="let p of players; let i = index" [class.odd]="i % 2 === 0">
-      <!--td>{{p.team}}</td-->
-      <td>{{i + 1}}.</td>
-      <!--td>#{{p.number}}</td-->
-      <td>{{p.firstName}} {{p.lastName}}</td>
-      <td>{{teamAbbr(p.team)}}</td>
-      <td>{{p.penalties}} min</td>
-    </tr>
+
+    <ng-container *ngFor="let p of players; let i = index">
+      <tr *ngIf="i === 0" class="eka">
+        <td class="index">{{i + 1}}.</td>
+        <td><img style="height: 6em; width: auto" src="/assets/logos/{{teamLogo(p.team)}}"></td>
+        <td colspan="2" class="info">
+          <span>#{{p.number}}</span><br>
+          <span class="name">{{p.firstName}}
+            <ng-template [ngIf]="p.funName"> "{{p.funName}}"</ng-template>
+            {{p.lastName}}</span><br>
+          <span>{{teamAbbr(p.team)}}</span><br>
+          <span>{{p.penalties}} min</span>
+        </td>
+      </tr>
+
+      <tr *ngIf="i > 0 && i < limit" [class.odd]="i % 2 === 0">
+        <td>{{i + 1}}.</td>
+        <td>{{p.firstName}} {{p.lastName}}</td>
+        <td>{{teamAbbr(p.team)}}</td>
+        <td>{{p.penalties}} min</td>
+      </tr>
+    </ng-container>
   </table>
 </main>

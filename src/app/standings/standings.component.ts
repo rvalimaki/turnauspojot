@@ -23,7 +23,7 @@ export class StandingsComponent implements OnInit {
   private gameSubscription: Subscription;
 
   ngOnInit() {
-    this.titleService.title = this.title;
+    if (this.title != null) { this.titleService.title = this.title; }
 
     this.gameSubscription = this.db.list('games').valueChanges().subscribe(
       games => {

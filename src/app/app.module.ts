@@ -31,6 +31,9 @@ import {
   MatSelectModule,
   MatSidenavModule, MatSortModule, MatTableModule
 } from '@angular/material';
+import { TopGoalScorersComponent } from './top-goal-scorers/top-goal-scorers.component';
+import { TopPlaymakersComponent } from './top-playmakers/top-playmakers.component';
+import { GameEventComponent } from './game-event/game-event.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import {
     TotalPigsComponent,
     StandingsComponent,
     GamesComponent,
-    DashboardComponent
+    DashboardComponent,
+    TopGoalScorersComponent,
+    TopPlaymakersComponent,
+    GameEventComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
 
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -81,13 +87,17 @@ import {
     RouterModule.forRoot([
       {
         path: '', component: NavComponent, children: [
+          {path: '', redirectTo: 'pelit', pathMatch: 'prefix'},
           {path: 'pelit', component: GamesComponent},
           {path: 'sarjataulukko', component: StandingsComponent},
           {path: 'pistekunkut', component: TopScorersComponent},
+          {path: 'maalitykit', component: TopGoalScorersComponent},
+          {path: 'pelintekijat', component: TopPlaymakersComponent},
           {path: 'sikaosasto', component: TotalPigsComponent},
-          {path: 'dashboard', component: DashboardComponent}
+          {path: 'kooste', component: DashboardComponent}
         ]
-      }])
+      },
+      {path: 'dashboard', component: DashboardComponent}])
   ],
   providers: [],
   bootstrap: [AppComponent]

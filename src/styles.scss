@@ -7,6 +7,8 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  background-color: #1b1c20;
 }
 
 
@@ -141,22 +143,103 @@ $perhe-app-theme: mat-light-theme($perhe-app-primary, $perhe-app-accent, $perhe-
 // that you are using.
 @include angular-material-theme($perhe-app-theme);
 
+main {
+  width: 100%;
 
-table {
-  border-collapse: collapse;
+  background-color: rgb(27, 28, 32);
+  color: #fff;
 
-  td, th {
-    padding: 0.25em 0.5em;
+  box-shadow: rgb(0, 0, 0) 0px 0px 30px 0px;
 
-    &.highlight {
-      background-color: #eee;
+  margin: 0;
+  padding: 0;
+
+  div.header {
+    h2 {
+      font-family: 'Exo', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 23px;
+      margin: 0;
+      padding: 0.5em 0.5em 1em 0.5em;
     }
   }
-  tr.odd td {
-    background-color: #eee;
 
-    &.highlight {
-      background-color: #ddd;
+  table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    td, th {
+      padding: 0.5em 0.5em;
+
+      background-color: rgb(27, 28, 32);
+    }
+
+    th {
+      font-family: Exo, sans-serif;
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 800;
+
+      text-align: left;
+    }
+
+    td {
+      font-family: Roboto, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+
+      &.highlight {
+        font-weight: 700;
+      }
+
+      img {
+        vertical-align: middle;
+      }
+
+      white-space: nowrap;
+
+      &:last-of-type {
+        width: 100%;
+      }
+    }
+
+    tr.odd td {
+      background-color: rgb(48, 47, 52);
+    }
+
+    tr.eka td {
+      height: 4em;
+
+      background-image: linear-gradient(rgb(27, 28, 32) 0%, rgb(37, 37, 42) 50%, rgb(48, 47, 52) 100%);
+
+      &.index {
+        font-family: Exo, sans-serif;
+        font-size: 26px;
+        font-style: italic;
+        font-weight: 800;
+
+        vertical-align: middle;
+      }
+
+      &.info {
+        span {
+          font-family: Roboto, sans-serif;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 400;
+
+          &.name {
+            font-family: Exo, sans-serif;
+            font-size: 15px;
+            font-style: italic;
+            font-weight: 800;
+          }
+        }
+
+      }
     }
   }
 }

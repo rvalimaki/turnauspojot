@@ -11,6 +11,7 @@ import { Helpers } from '../top-scorers/helpers';
 })
 export class TotalPigsComponent implements OnInit {
   @Input() title = 'Sikaosasto';
+  @Input() limit = 100;
 
   constructor(private db: AngularFireDatabase, private titleService: TitleService) {
   }
@@ -24,7 +25,7 @@ export class TotalPigsComponent implements OnInit {
   private gameSubscription: Subscription;
 
   ngOnInit() {
-    this.titleService.title = this.title;
+    if (this.title != null) { this.titleService.title = this.title; }
 
     this.gameSubscription = this.db.list('games').valueChanges().subscribe(
       games => {
@@ -68,5 +69,9 @@ export class TotalPigsComponent implements OnInit {
 
   teamAbbr(team: string) {
     return Helpers.teamAbbreviation(team);
+  }
+
+  teamLogo(team: string) {
+    return Helpers.teamLogo(team);
   }
 }

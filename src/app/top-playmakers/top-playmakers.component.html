@@ -1,6 +1,6 @@
 <main class="taulu">
   <div class="header" *ngIf="title == null">
-    <h2>Pistepörssi</h2>
+    <h2>Pelintekijävelhot</h2>
   </div>
   <table>
 
@@ -14,7 +14,7 @@
             <ng-template [ngIf]="p.funName"> "{{p.funName}}"</ng-template>
             {{p.lastName}}</span><br>
           <span>{{teamAbbr(p.team)}}</span><br>
-          <span>{{p.goals}} + {{p.assists}} = {{p.points}}</span>
+          <span>{{p.assists}}, ykkössyötöt: {{p.primaryAssists}}</span>
         </td>
       </tr>
 
@@ -22,7 +22,7 @@
         <td>{{i + 1}}.</td>
         <td>{{p.firstName}} {{p.lastName}}</td>
         <td>{{teamAbbr(p.team)}}</td>
-        <td>{{p.goals}} + {{p.assists}} = {{p.points}}</td>
+        <td>{{p.assists}} ({{p.primaryAssists}})</td>
       </tr>
     </ng-container>
   </table>

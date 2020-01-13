@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TitleService } from '../title.service';
-import { Helpers } from './helpers';
+import { Subscription } from 'rxjs';
+import { Helpers } from '../top-scorers/helpers';
 
 @Component({
-  selector: 'app-top-scorers',
-  templateUrl: './top-scorers.component.html',
-  styleUrls: ['./top-scorers.component.scss']
+  selector: 'app-top-playmakers',
+  templateUrl: './top-playmakers.component.html',
+  styleUrls: ['./top-playmakers.component.scss']
 })
-export class TopScorersComponent implements OnInit {
-  @Input() title = 'Pistepörssi';
+export class TopPlaymakersComponent implements OnInit {
+  @Input() title = 'Pelintekijävelhot';
   @Input() limit = 100;
 
   constructor(private db: AngularFireDatabase, private titleService: TitleService) {
@@ -53,17 +53,17 @@ export class TopScorersComponent implements OnInit {
 
   private sortPlayers() {
     this.players.sort((a, b) => {
-      if (b.points == null) { return -1; }
-      if (a.points == null) { return 1; }
+      if (b.assists == null) { return -1; }
+      if (a.assists == null) { return 1; }
 
-      if (a.points > b.points) { return -1; }
-      if (a.points < b.points) { return 1; }
-
-      if (a.goals > b.goals) { return -1; }
-      if (a.goals < b.goals) { return 1; }
+      if (a.assists > b.assists) { return -1; }
+      if (a.assists < b.assists) { return 1; }
 
       if (a.primaryAssists > b.primaryAssists) { return -1; }
       if (a.primaryAssists < b.primaryAssists) { return 1; }
+
+      if (a.goals > b.goals) { return -1; }
+      if (a.goals < b.goals) { return 1; }
 
       if (a.penalties > b.penalties) { return 1; }
       if (a.penalties < b.penalties) { return -1; }

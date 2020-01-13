@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Helpers } from '../top-scorers/helpers';
 import { Subscription } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TitleService } from '../title.service';
-import { Helpers } from './helpers';
 
 @Component({
-  selector: 'app-top-scorers',
-  templateUrl: './top-scorers.component.html',
-  styleUrls: ['./top-scorers.component.scss']
+  selector: 'app-top-goal-scorers',
+  templateUrl: './top-goal-scorers.component.html',
+  styleUrls: ['./top-goal-scorers.component.scss']
 })
-export class TopScorersComponent implements OnInit {
-  @Input() title = 'Pistepörssi';
+export class TopGoalScorersComponent implements OnInit {
+  @Input() title = 'Maalitykit';
   @Input() limit = 100;
 
   constructor(private db: AngularFireDatabase, private titleService: TitleService) {
@@ -53,14 +53,14 @@ export class TopScorersComponent implements OnInit {
 
   private sortPlayers() {
     this.players.sort((a, b) => {
-      if (b.points == null) { return -1; }
-      if (a.points == null) { return 1; }
-
-      if (a.points > b.points) { return -1; }
-      if (a.points < b.points) { return 1; }
+      if (b.goals == null) { return -1; }
+      if (a.goals == null) { return 1; }
 
       if (a.goals > b.goals) { return -1; }
       if (a.goals < b.goals) { return 1; }
+
+      if (a.points > b.points) { return -1; }
+      if (a.points < b.points) { return 1; }
 
       if (a.primaryAssists > b.primaryAssists) { return -1; }
       if (a.primaryAssists < b.primaryAssists) { return 1; }
