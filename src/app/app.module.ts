@@ -23,17 +23,22 @@ import { GamesComponent } from './games/games.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
-import {
-  MatAutocompleteModule, MatDatepickerModule, MatFormFieldModule,
-  MatGridListModule, MatIconModule, MatInputModule, MatListModule,
-  MatNativeDateModule,
-  MatOptionModule, MatPaginatorModule,
-  MatSelectModule,
-  MatSidenavModule, MatSortModule, MatTableModule
-} from '@angular/material';
 import { TopGoalScorersComponent } from './top-goal-scorers/top-goal-scorers.component';
 import { TopPlaymakersComponent } from './top-playmakers/top-playmakers.component';
 import { GameEventComponent } from './game-event/game-event.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
