@@ -38,14 +38,12 @@ export class TopGoalScorersComponent implements OnInit {
         this.players = (<any>players).filter(p => p.points != null && p.points > 0);
 
         this.sortPlayers();
-
       }
     );
 
     this.teamSubscription = this.db.list('teams').valueChanges().subscribe(
       teams => {
         this.teams = teams;
-
       }
     );
   }

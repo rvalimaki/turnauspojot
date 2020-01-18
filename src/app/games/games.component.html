@@ -8,7 +8,7 @@
       <th>Vieras</th>
     </tr>
     <ng-container *ngFor="let t of games; let i = index">
-      <tr [class.odd]="i % 2 === 0" (click)="latestGame = t.id">
+      <tr [class.odd]="i % 2 === 0" (click)="selectedGame = t.id">
         <!--td>{{p.team}}</td-->
         <td>{{i + 1}}.</td>
         <td>{{t.schedule}}</td>
@@ -19,11 +19,15 @@
         <td><img style="height: 4em; width: auto" src="/assets/logos/{{teamLogo(t.away)}}"></td>
         <!--td>{{teamAbbr(t.away)}}</t2d-->
       </tr>
-      <ng-container *ngIf="t.id === latestGame">
+      <ng-container *ngIf="t.id === selectedGame">
         <tr *ngFor="let e of eventsDict[t.id]" [class.odd]="i % 2 === 0">
-          <td colspan="3" style="text-align: right"><app-game-event *ngIf="e.home == true" [event]="e"></app-game-event></td>
+          <td colspan="3" style="text-align: right">
+            <app-game-event *ngIf="e.home == true" [event]="e" [playersDict]="playersDict"></app-game-event>
+          </td>
           <td class="date">{{e.date | date: 'mm:ss'}}</td>
-          <td><app-game-event *ngIf="e.away == true" [event]="e"></app-game-event></td>
+          <td>
+            <app-game-event *ngIf="e.away == true" [event]="e" [playersDict]="playersDict"></app-game-event>
+          </td>
         </tr>
       </ng-container>
 

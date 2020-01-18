@@ -21,8 +21,9 @@ export class GamesComponent implements OnInit {
   events: any[] = [];
 
   eventsDict = {};
+  playersDict = {};
 
-  latestGame = '-0';
+  selectedGame = '-0';
 
   private playerSubscription: Subscription;
   private teamSubscription: Subscription;
@@ -44,6 +45,10 @@ export class GamesComponent implements OnInit {
     this.playerSubscription = this.db.list('players').valueChanges().subscribe(
       players => {
         this.players = players;
+
+        for (const p of this.players) {
+          this.playersDict[p.team + '_' + p.number] = p;
+        }
       }
     );
 
@@ -59,7 +64,7 @@ export class GamesComponent implements OnInit {
         this.events.sort((a, b) => a.id.localeCompare(b.id, [], {numeric: true}));
 
         this.eventsDict = {};
-        this.latestGame = '-0';
+        this.selectedGame = '-0';
 
         for (const e of this.events) {
           e.date = isNaN(e.timestamp) ? null : new Date(e.timestamp);
@@ -67,7 +72,7 @@ export class GamesComponent implements OnInit {
           if (this.eventsDict[e.gameId] == null) {
             this.eventsDict[e.gameId] = [];
 
-            this.latestGame = e.gameId;
+            this.selectedGame = e.gameId;
           }
 
           this.eventsDict[e.gameId].push(e);
