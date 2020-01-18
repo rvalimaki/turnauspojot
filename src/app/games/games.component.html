@@ -20,12 +20,12 @@
         <!--td>{{teamAbbr(t.away)}}</t2d-->
       </tr>
       <ng-container *ngIf="t.id === selectedGame">
-        <tr *ngFor="let e of eventsDict[t.id]" [class.odd]="i % 2 === 0">
-          <td colspan="3" style="text-align: right">
+        <tr *ngFor="let e of eventsDict[t.id]; let eventIndex = index" [class.odd]="i % 2 === 0">
+          <td colspan="3" style="text-align: right" [class.first]="eventIndex === 0">
             <app-game-event *ngIf="e.home == true" [event]="e" [playersDict]="playersDict"></app-game-event>
           </td>
           <td class="date">{{e.date | date: 'mm:ss'}}</td>
-          <td>
+          <td [class.first]="eventIndex === 0">
             <app-game-event *ngIf="e.away == true" [event]="e" [playersDict]="playersDict"></app-game-event>
           </td>
         </tr>
