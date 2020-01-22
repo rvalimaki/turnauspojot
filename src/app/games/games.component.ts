@@ -10,9 +10,9 @@ import { Helpers } from '../top-scorers/helpers';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-  @Input() title = 'Pelit';
+  title = 'Pelit';
 
-  constructor(private db: AngularFireDatabase, private titleService: TitleService) {
+  constructor(private db: AngularFireDatabase, private titleService: TitleService,) {
   }
 
   teams: any[] = [];
@@ -22,6 +22,8 @@ export class GamesComponent implements OnInit {
 
   eventsDict = {};
   playersDict = {};
+
+  teamPlayersDict = {};
 
   selectedGame = '-0';
 
@@ -46,8 +48,20 @@ export class GamesComponent implements OnInit {
       players => {
         this.players = players;
 
+        this.playersDict = {};
+        this.teamPlayersDict = {};
+
         for (const p of this.players) {
           this.playersDict[p.team + '_' + p.number] = p;
+
+          if (this.teamPlayersDict[p.team] == null) {
+            this.teamPlayersDict[p.team] = [];
+          }
+
+          this.teamPlayersDict[p.team].push(p);
+
+          this.teamPlayersDict[p.team].sort((a, b) =>
+            a.number.localeCompare(b.number, [], {numeric: true}));
         }
       }
     );

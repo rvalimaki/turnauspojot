@@ -39,8 +39,6 @@ export class GameEventComponent implements OnInit {
   getPlayerName(playerId: string) {
     const player = this.playersDict[playerId];
 
-    console.log(this.playersDict);
-
     return player == null ? '' : player.firstName + ' ' + player.lastName;
   }
 }

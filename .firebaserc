@@ -1,4 +1,6 @@
 {
-  "projects": {    "Turnauspojot": "turnauspojot"
+  "projects": {
+    "Urjala6": "urjala6",
+    "default": "urjala6"
   }
 }
