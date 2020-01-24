@@ -29,6 +29,13 @@
             <app-game-event *ngIf="e.away == true" [event]="e" [playersDict]="playersDict"></app-game-event>
           </td>
         </tr>
+
+        <tr *ngIf="bet && false">
+          <td colspan="5">
+            <app-bet [game]="games[i]" [teamPlayersDict]="teamPlayersDict"></app-bet>
+          </td>
+        </tr>
+
       </ng-container>
 
     </ng-container>

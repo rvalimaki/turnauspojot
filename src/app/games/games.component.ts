@@ -12,6 +12,8 @@ import { Helpers } from '../top-scorers/helpers';
 export class GamesComponent implements OnInit {
   title = 'Pelit';
 
+  @Input() bet = true;
+
   constructor(private db: AngularFireDatabase, private titleService: TitleService,) {
   }
 

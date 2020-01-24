@@ -39,6 +39,8 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { BetComponent } from './bet/bet.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     DashboardComponent,
     TopGoalScorersComponent,
     TopPlaymakersComponent,
-    GameEventComponent
+    GameEventComponent,
+    BetComponent
   ],
   imports: [
     BrowserModule,
@@ -90,19 +93,21 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 
     RouterModule.forRoot([
-      {
-        path: '', component: NavComponent, children: [
-          {path: '', redirectTo: 'pelit', pathMatch: 'prefix'},
-          {path: 'pelit', component: GamesComponent},
-          {path: 'sarjataulukko', component: StandingsComponent},
-          {path: 'pistekunkut', component: TopScorersComponent},
-          {path: 'maalitykit', component: TopGoalScorersComponent},
-          {path: 'pelintekijat', component: TopPlaymakersComponent},
-          {path: 'sikaosasto', component: TotalPigsComponent},
-          {path: 'kooste', component: DashboardComponent}
-        ]
-      },
-      {path: 'dashboard', component: DashboardComponent}])
+        {
+          path: '', component: NavComponent, children: [
+            {path: '', redirectTo: 'pelit', pathMatch: 'prefix'},
+            {path: 'pelit', component: GamesComponent},
+            {path: 'sarjataulukko', component: StandingsComponent},
+            {path: 'pistekunkut', component: TopScorersComponent},
+            {path: 'maalitykit', component: TopGoalScorersComponent},
+            {path: 'pelintekijat', component: TopPlaymakersComponent},
+            {path: 'sikaosasto', component: TotalPigsComponent},
+            {path: 'kooste', component: DashboardComponent}
+          ]
+        },
+        {path: 'dashboard', component: DashboardComponent}],
+      {useHash: true}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
