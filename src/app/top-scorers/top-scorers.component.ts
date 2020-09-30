@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TitleService } from '../title.service';
-import { Helpers } from './helpers';
+import {Helpers} from './helpers';
+import {TeamLogoService} from '../services/team-logo.service';
 
 @Component({
   selector: 'app-top-scorers',
@@ -13,7 +14,7 @@ export class TopScorersComponent implements OnInit {
   @Input() title = 'Pistepörssi';
   @Input() limit = 100;
 
-  constructor(private db: AngularFireDatabase, private titleService: TitleService) {
+  constructor(private db: AngularFireDatabase, private titleService: TitleService, private logos: TeamLogoService) {
   }
 
   teams: any[] = [];
@@ -83,6 +84,6 @@ export class TopScorersComponent implements OnInit {
   }
 
   teamLogo(team: string) {
-    return Helpers.teamLogo(team);
+    return this.logos.logo(team);
   }
 }

@@ -9,7 +9,7 @@ import { TitleService } from '../title.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private titleService: TitleService) {
-    this.titleService.title = 'Urjala V — 29.1.2019';
+    this.titleService.title = 'Sonkajärvi I — 3.10.2020';
   }
 
   ngOnInit() {

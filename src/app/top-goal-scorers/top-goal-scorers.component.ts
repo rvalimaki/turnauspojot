@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Helpers } from '../top-scorers/helpers';
+import {Helpers} from '../top-scorers/helpers';
 import { Subscription } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TitleService } from '../title.service';
+import {TeamLogoService} from '../services/team-logo.service';
 
 @Component({
   selector: 'app-top-goal-scorers',
@@ -13,7 +14,7 @@ export class TopGoalScorersComponent implements OnInit {
   @Input() title = 'Maalitykit';
   @Input() limit = 100;
 
-  constructor(private db: AngularFireDatabase, private titleService: TitleService) {
+  constructor(private db: AngularFireDatabase, private titleService: TitleService, private logos: TeamLogoService) {
   }
 
   teams: any[] = [];
@@ -81,6 +82,6 @@ export class TopGoalScorersComponent implements OnInit {
   }
 
   teamLogo(team: string) {
-    return Helpers.teamLogo(team);
+    return this.logos.logo(team);
   }
 }

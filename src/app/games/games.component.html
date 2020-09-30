@@ -10,7 +10,8 @@
     <ng-container *ngFor="let t of games; let i = index">
       <tr [class.odd]="i % 2 === 0" (click)="selectedGame = t.id">
         <!--td>{{p.team}}</td-->
-        <td>{{i + 1}}.</td>
+        <td *ngIf="t.gameType == 'Lohko'">{{i + 1}}.</td>
+        <td *ngIf="t.gameType != 'Lohko'">{{t.gameType}}</td>
         <td>{{t.schedule}}</td>
         <!--td>{{teamAbbr(t.home)}}</td-->
         <td><img style="height: 4em; width: auto" src="/assets/logos/{{teamLogo(t.home)}}"></td>
