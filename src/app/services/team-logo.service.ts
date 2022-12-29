@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireDatabase} from '@angular/fire/compat/database';
 
 @Injectable()
 export class TeamLogoService {

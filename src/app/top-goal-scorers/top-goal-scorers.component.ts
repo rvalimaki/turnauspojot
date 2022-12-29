@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Helpers} from '../top-scorers/helpers';
 import { Subscription } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { TitleService } from '../title.service';
 import {TeamLogoService} from '../services/team-logo.service';
 

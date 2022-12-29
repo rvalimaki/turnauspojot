@@ -12,8 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 import {firebaseConfig} from './firebaseConfig';
 import {NavComponent} from './nav/nav.component';
 import {TopScorersComponent} from './top-scorers/top-scorers.component';
@@ -35,7 +35,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -107,7 +108,7 @@ import {TeamLogoService} from './services/team-logo.service';
           ]
         },
         {path: 'dashboard', component: DashboardComponent}],
-      {useHash: true}),
+      { useHash: true }),
     FormsModule
   ],
   providers: [TeamLogoService],

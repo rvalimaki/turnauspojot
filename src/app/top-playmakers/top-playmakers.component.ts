@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { TitleService } from '../title.service';
 import { Subscription } from 'rxjs';
 import {Helpers} from '../top-scorers/helpers';
