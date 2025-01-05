@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
@@ -44,75 +44,58 @@ import {BetComponent} from './bet/bet.component';
 import {FormsModule} from '@angular/forms';
 import {TeamLogoService} from './services/team-logo.service';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    TopScorersComponent,
-    TotalPigsComponent,
-    StandingsComponent,
-    GamesComponent,
-    DashboardComponent,
-    TopGoalScorersComponent,
-    TopPlaymakersComponent,
-    GameEventComponent,
-    BetComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-
-    LayoutModule,
-
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-
-    MatSelectModule,
-    MatOptionModule,
-
-    MatAutocompleteModule,
-
-    MatGridListModule,
-
-
-    RouterModule.forRoot([
-        {
-          path: '', component: NavComponent, children: [
-            {path: '', redirectTo: 'pelit', pathMatch: 'prefix'},
-            {path: 'pelit', component: GamesComponent},
-            {path: 'sarjataulukko', component: StandingsComponent},
-            {path: 'pistekunkut', component: TopScorersComponent},
-            {path: 'maalitykit', component: TopGoalScorersComponent},
-            {path: 'pelintekijat', component: TopPlaymakersComponent},
-            {path: 'sikaosasto', component: TotalPigsComponent},
-            {path: 'kooste', component: DashboardComponent}
-          ]
-        },
-        {path: 'dashboard', component: DashboardComponent}],
-      { useHash: true }),
-    FormsModule
-  ],
-  providers: [TeamLogoService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavComponent,
+        TopScorersComponent,
+        TotalPigsComponent,
+        StandingsComponent,
+        GamesComponent,
+        DashboardComponent,
+        TopGoalScorersComponent,
+        TopPlaymakersComponent,
+        GameEventComponent,
+        BetComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireDatabaseModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatAutocompleteModule,
+        MatGridListModule,
+        RouterModule.forRoot([
+            {
+                path: '', component: NavComponent, children: [
+                    { path: '', redirectTo: 'pelit', pathMatch: 'prefix' },
+                    { path: 'pelit', component: GamesComponent },
+                    { path: 'sarjataulukko', component: StandingsComponent },
+                    { path: 'pistekunkut', component: TopScorersComponent },
+                    { path: 'maalitykit', component: TopGoalScorersComponent },
+                    { path: 'pelintekijat', component: TopPlaymakersComponent },
+                    { path: 'sikaosasto', component: TotalPigsComponent },
+                    { path: 'kooste', component: DashboardComponent }
+                ]
+            },
+            { path: 'dashboard', component: DashboardComponent }
+        ], { useHash: true }),
+        FormsModule], providers: [TeamLogoService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }
