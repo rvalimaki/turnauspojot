@@ -5,48 +5,74 @@
       <th>Aika</th>
       <th>Koti</th>
       <th></th>
-      <th>Vieras</th>
+      <th colspan="2">Vieras</th>
     </tr>
     <ng-container *ngFor="let t of games; let i = index">
       <tr [class.odd]="i % 2 === 0" (click)="selectedGame = t.id">
         <!--td>{{p.team}}</td-->
-        <td *ngIf="t.gameType == 'Lohko'">{{i + 1}}.</td>
-        <td *ngIf="t.gameType != 'Lohko'">{{t.gameType}}</td>
-        <td>{{t.schedule}}</td>
+        <td *ngIf="t.gameType == 'Lohko'">{{ i + 1 }}.</td>
+        <td *ngIf="t.gameType != 'Lohko'">{{ t.gameType }}</td>
+        <td>{{ t.schedule }}</td>
         <!--td>{{teamAbbr(t.home)}}</td-->
-        <td><img style="height: 4em; width: auto" src="/assets/logos/{{teamLogo(t.home)}}"></td>
-        <td *ngIf="t.homeGoals == null"> -</td>
-        <td *ngIf="t.homeGoals != null">{{t.homeGoals}} - {{t.awayGoals}}</td>
-        <td><img style="height: 4em; width: auto" src="/assets/logos/{{teamLogo(t.away)}}"></td>
+        <td class="team-logo">
+          <img src="/assets/logos/{{ teamLogo(t.home) }}" />
+        </td>
+        <td *ngIf="t.homeGoals == null">-</td>
+        <td *ngIf="t.homeGoals != null">
+          {{ t.homeGoals }} - {{ t.awayGoals }}
+        </td>
+        <td class="team-logo">
+          <img src="/assets/logos/{{ teamLogo(t.away) }}" />
+        </td>
         <!--td>{{teamAbbr(t.away)}}</t2d-->
+        <td></td>
       </tr>
       <ng-container *ngIf="t.id === selectedGame">
-        <tr *ngFor="let e of eventsDict[t.id]; let eventIndex = index" [class.odd]="i % 2 === 0">
-          <td colspan="3" style="text-align: right; white-space: normal" [class.first]="eventIndex === 0">
-            <app-game-event *ngIf="e.home == true" [event]="e" [playersDict]="playersDict"></app-game-event>
+        <tr
+          *ngFor="let e of eventsDict[t.id]; let eventIndex = index"
+          [class.odd]="i % 2 === 0"
+        >
+          <td
+            colspan="3"
+            style="text-align: right; white-space: normal"
+            [class.first]="eventIndex === 0"
+          >
+            <app-game-event
+              *ngIf="e.home == true"
+              [event]="e"
+              [playersDict]="playersDict"
+            ></app-game-event>
           </td>
-          <td class="date">{{e.date | date: 'mm:ss'}}</td>
-          <td style="white-space: normal" [class.first]="eventIndex === 0">
-            <app-game-event *ngIf="e.away == true" [event]="e" [playersDict]="playersDict"></app-game-event>
+          <td class="date">{{ e.date | date : "mm:ss" }}</td>
+          <td
+            colspan="2"
+            style="white-space: normal"
+            [class.first]="eventIndex === 0"
+          >
+            <app-game-event
+              *ngIf="e.away == true"
+              [event]="e"
+              [playersDict]="playersDict"
+            ></app-game-event>
           </td>
         </tr>
 
         <tr *ngIf="bet && t.betLink && t.betWinner" [class.odd]="i % 2 === 0">
           <td colspan="5">
-            Avausmaaliveikkauksen voitti <strong>{{t.betWinner}}</strong>. Onnea voittajalle!
+            Avausmaaliveikkauksen voitti <strong>{{ t.betWinner }}</strong
+            >. Onnea voittajalle!
           </td>
         </tr>
-
       </ng-container>
 
       <tr *ngIf="bet && t.betLink && !t.started" [class.odd]="i % 2 === 0">
         <td colspan="5">
-          <a href="{{t.betLink}}"
-             style="color: #fff">Veikkaa avausmaalin tekijää ja voita grillimakkara! (klikkaa!)</a>
+          <a href="{{ t.betLink }}" style="color: #fff"
+            >Veikkaa avausmaalin tekijää ja voita grillimakkara! (klikkaa!)</a
+          >
           <!--app-bet [game]="games[i]" [teamPlayersDict]="teamPlayersDict"></app-bet-->
         </td>
       </tr>
-
     </ng-container>
   </table>
 </main>
